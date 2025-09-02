@@ -10,10 +10,30 @@
 1. **Клонировать репозиторий**
 
 ```bash 
-git clone <репозиторий> ArtilTestTask
+git clone git clone https://github.com/fedorkhamitov/ArtilTestTask.git
+```
+```bash 
+git clone git clone https://github.com/fedorkhamitov/ArtilTestTask.Frontend.git
+```
+```bash
+mv ArtilTestTask.Frontend ArtilTestTask/
 ```
 ```bash
 cd ArtilTestTask
+```
+
+### Структура проекта должна получиться
+```
+ArtilTestTask/
+├── docker-compose.yml
+├── init-mongo.js
+├── src/
+│ └── EntitiesApp.Api/
+│ └── Dockerfile
+└── ArtilTestTask.Frontend/
+└── mybooks/
+├── Dockerfile
+└── …React…
 ```
 
 2. **Запустить все сервисы**
@@ -47,7 +67,7 @@ docker-compose down
 ## Инициализация БД
 
 При первом запуске контейнер `mongodb` выполнит скрипт `init-mongo.js`, который:
-- Создаёт пользователя `admin`/`admin123`
+- Создаёт пользователя `admin` с паролем `Admin123!`
 - Создаёт базу `booksdb`
 - При необходимости добавляет стартовые данные (если в базе меньше 100_000 записей, то добавляются 150_000 записей)
 
@@ -65,5 +85,3 @@ docker-compose logs mongodb
 docker-compose logs api
 docker-compose logs frontend
 ```
-- В случае ошибок сборки фронтенда обновить Dockerfile (игнорировать проверку TypeScript)  
-- Проверить сетевые порты и доступность контейнеров
